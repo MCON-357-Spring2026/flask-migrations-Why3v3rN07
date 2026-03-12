@@ -159,11 +159,11 @@ These changes update the Python models, but not yet the actual database tables.
 
 After adding the new model fields, run:
 ```bash
-flask --app src.migration_exercise.manage db migrate -m "add due_date to assignment and comment to grade"
+flask --app src.migration_exercises.manage db migrate -m "add due_date to assignment and comment to grade"
 ```
 Then apply it:
 ```bash
-flask --app src.migration_exercise.manage db upgrade
+flask --app src.migration_exercises.manage db upgrade
 ```
 Open the generated migration file and inspect it.
 
