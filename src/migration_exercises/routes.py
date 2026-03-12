@@ -60,10 +60,15 @@ def create_assignment():
     title = data.get("title")
     max_score = data.get("max_score")
     due_date = data.get("due_date")
-    parsed_date = date.fromisoformat(due_date) if due_date else None
 
     if not title or max_score is None:
         return jsonify({"error": "title and max_score are required"}), 400
+
+    try:
+        parsed_date = date.fromisoformat(due_date) if due_date else None
+    except ValueError:
+        return jsonify({"error": "date must be in YYYY-MM-DD format"}), 400
+
 
     assignment = Assignment(title=title, max_score=max_score, due_date=parsed_date)
     db.session.add(assignment)
